@@ -1,0 +1,11 @@
+--- ./gcc/gcc.orig	2016-04-27 10:40:16.797248218 +0000
++++ ./gcc/gcc.c	2016-04-27 10:40:40.793169685 +0000
+@@ -739,7 +739,7 @@
+ 
+ #ifndef LINK_PIE_SPEC
+ #ifdef HAVE_LD_PIE
+-#define LINK_PIE_SPEC "%{pie:-pie} "
++#define LINK_PIE_SPEC "%{pie:%{static:-shared -Bsymbolic;:-pie}} "
+ #else
+ #define LINK_PIE_SPEC "%{pie:} "
+ #endif

@@ -212,7 +212,7 @@ gitfetchextract() {
 muslfetchextract() {
     if [ "$MUSL_GIT" = "yes" ]
     then
-        gitfetchextract "$MUSL_GIT_REPO" $MUSL_VERSION musl-$MUSL_VERSION
+        gitfetchextract "$MUSL_GIT_REPO" $MUSL_GIT_VERSION musl-$MUSL_VERSION
     else
         fetchextract http://www.musl-libc.org/releases/ musl-$MUSL_VERSION .tar.gz
     fi
