@@ -27,6 +27,7 @@ BINUTILS_CONFFLAGS=
 GCC_BOOTSTRAP_CONFFLAGS=
 MUSL_CONFFLAGS=
 GCC_CONFFLAGS=
+GDB_CONFFLAGS=
 WITH_SYSROOT=no
 . "$MUSL_CC_BASE"/defs.sh
 
@@ -52,6 +53,15 @@ sed -i -e 's,MAKEINFO="$MISSING makeinfo",MAKEINFO=true,g' \
     $BINUTILS_DIR/configure
 buildinstall 1 $BINUTILS_DIR --target=$TRIPLE --disable-werror $SYSROOT_FLAGS \
     $BINUTILS_CONFFLAGS
+
+# gdb
+fetchextract "$GDB_URL"
+GDB_DIR=$(stripfileext $(basename $GDB_URL))
+
+sed -i -e 's,MAKEINFO="$MISSING makeinfo",MAKEINFO=true,g' \
+    $GDB_DIR/configure
+buildinstall 1 $GDB_DIR --target=$TRIPLE $SYSROOT_FLAGS \
+    $GDB_CONFFLAGS
 
 # gcc 1
 if [ -z $GCC_URL ];
