@@ -11,7 +11,7 @@
 libgcc.a%s %:if-exists(libgcc_eh.a%s)
 
 *startfile:
-%{!shared: BASE/lib/%{pie:S}crt1.o} BASE/lib/crti.o %{shared|pie:crtbeginS.o%s;:crtbegin.o%s}
+%{!shared: BASE/lib/%{pie:%{static:r;:S}}crt1.o} BASE/lib/crti.o %{shared|pie:crtbeginS.o%s;:crtbegin.o%s}
 
 *endfile:
 %{shared|pie:crtendS.o%s;:crtend.o%s} BASE/lib/crtn.o
